@@ -23,7 +23,7 @@ public class JdbcTest {
         user = new User();
 
         user.setUserId("qq88888888");
-        user.setName("Totoro");
+        user.setName("Hikaru");
         user.setAge(22);
 
     }
@@ -33,7 +33,7 @@ public class JdbcTest {
 
         String sql = "INSERT INTO user(`userId`, `name`, `age`, `status`) values (?, ?, ?)";
 
-        System.out.println("create: " + JdbcReview.update(sql, new Object[]{user.getUserId(), user.getName(), user.getAge()}));
+        System.out.println("create: " + JdbcReview.update(JdbcReview.getConnection(), sql, new Object[]{user.getUserId(), user.getName(), user.getAge()}));
 
     }
 
@@ -44,7 +44,7 @@ public class JdbcTest {
 
         String sql = "UPDATE user SET `name` = ?, `age` = ? WHERE `userId` = ?";
 
-        System.out.println("update: " + JdbcReview.update(sql, new Object[]{user.getName(), user.getAge(), user.getUserId()}));
+        System.out.println("update: " + JdbcReview.update(JdbcReview.getConnection(), sql, new Object[]{user.getName(), user.getAge(), user.getUserId()}));
 
     }
 
@@ -53,7 +53,7 @@ public class JdbcTest {
 
         String sql =  "UPDATE user SET `status` = 0 WHERE `userId` = ?";
 
-        System.out.println("delete: " + JdbcReview.update(sql, new Object[]{user.getUserId()}));
+        System.out.println("delete: " + JdbcReview.update(JdbcReview.getConnection(), sql, new Object[]{user.getUserId()}));
 
     }
 
@@ -64,7 +64,7 @@ public class JdbcTest {
 
         String sql = "SELECT * FROM user WHERE `age` = ?";
 
-        List<User> users = JdbcReview.query(sql, User.class, new Object[]{22});
+        List<User> users = JdbcReview.query(JdbcReview.getConnection(), sql, User.class, new Object[]{22});
 
         System.out.println(users);
 

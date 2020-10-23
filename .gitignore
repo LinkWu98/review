@@ -1,3 +1,5 @@
-/target
+/.idea
+target
 # Project exclude paths
-/basic/target/
+/basic/target
+/ssm/target

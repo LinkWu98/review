@@ -66,13 +66,14 @@ public class JdbcReview {
      * @return
      * @throws Exception
      */
-    public static int update(String sql, Object[] args) throws SQLException {
+    public static int update(Connection connection, String sql, Object[] args) throws SQLException {
 
-        Connection connection = null;
+        //Connection connection = null;
         PreparedStatement preparedStatement = null;
         int result = 0;
 
         try {
+
             //1. 建立连接
             connection = getConnection();
 
@@ -124,10 +125,10 @@ public class JdbcReview {
      * @return
      * @throws Exception
      */
-    public static <T> List<T> query(String sql, Class<T> clazz, Object[] args) throws Exception {
+    public static <T> List<T> query(Connection connection, String sql, Class<T> clazz, Object[] args) throws Exception {
 
         //1. 获取连接
-        Connection connection = getConnection();
+        //Connection connection = getConnection();
 
         //2. 给占位符赋值 (占位符和参数必须是一一对应的)
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -147,7 +148,7 @@ public class JdbcReview {
 
         ArrayList<T> data = new ArrayList<>();
 
-        //5. 遍历结果集中的每一行,
+        //5. 遍历结果集中的每一行
         while (resultSet.next()) {
 
             T t = clazz.newInstance();

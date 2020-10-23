@@ -1,12 +1,20 @@
-## Java Review
+# Java Review
 
 [toc]
 
-### JDBC
+## JDBC
 
-#### 基本流程
+### 基本流程
 
 1. Properties 读取配置文件参数
+
+   1. 相关知识点
+
+      properties.load(InputStream in)
+
+      Class 类的 getResourceAsStream 是从当前包下读
+
+      ClassLoader 类的getResourceAsStream 是从类路径开始读 (比如resource目录)
 
 2. 注册驱动 & 获取数据库连接
 
@@ -25,19 +33,13 @@
 
 5. 获取并解析结果集(ResultSet)
 
-   ResultSet => MetaData => ColumnCount、ColumnName（反射赋值）
+   ResultSet => MetaData => ColumnCount、ColumnName（反射赋值
+
+   
+
+   ）
 
 6. 关闭资源(PreparedStatement, Connection, ResultSet)
-
-
-
-
-
-
-
-
-
-
 
 
 
