@@ -1,6 +1,6 @@
 package cn.link.jdbc;
 
-import cn.link.jdbc.bean.User;
+import cn.link.bean.User;
 import org.junit.Before;
 import org.junit.Test;
 

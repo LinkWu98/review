@@ -2,7 +2,8 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+       xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd">
 
 
     <!-- 包扫描,将控制层类注入容器中 -->
@@ -10,6 +11,7 @@
 
     <!-- 读取配置文件属性，可直接 ${属性名} 用于 value 中 -->
     <context:property-placeholder location="classpath:datasource.properties"/>
+
 
     <!-- 连接池配置 -->
     <bean id="druidDataSource" class="com.alibaba.druid.pool.DruidDataSource">
@@ -21,5 +23,15 @@
         <property name="maxActive" value="${maxActive}"/>
         <property name="maxWait" value="${maxWait}"/>
     </bean>
+
+    <!-- mybatis 配置 SqlSessionFactoryBean, 配置文件和连接池-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="druidDataSource"/>
+        <property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>
+        <property name="mapperLocations" value="mapper/*.xml"/>
+    </bean>
+
+    <!-- 配置Mapper接口扫描，将其加载到SpringIOC中 -->
+    <mybatis-spring:scan base-package="cn.link.mapper"/>
 
 </beans>

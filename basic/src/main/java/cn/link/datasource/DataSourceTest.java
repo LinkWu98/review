@@ -1,7 +1,6 @@
 package cn.link.datasource;
 
-import cn.link.jdbc.JdbcReview;
-import cn.link.jdbc.bean.User;
+import cn.link.bean.User;
 import com.alibaba.druid.pool.DruidPooledConnection;
 import org.junit.Before;
 import org.junit.Test;
@@ -31,11 +30,15 @@ public class DataSourceTest {
 
         user = new User();
         user.setUserId("qq88888888");
-        user.setName("Hikari");
+        user.setName("Hikaru");
         user.setAge(22);
 
     }
 
+    /**
+     * 初始化的连接不会真正的被关闭，而是放回线程池中
+     * @throws SQLException
+     */
     @Test
     public void connectionTest() throws SQLException {
 
@@ -63,9 +66,9 @@ public class DataSourceTest {
     @Test
     public void dataSourceTest() throws SQLException {
 
-         String sql = "UPDATE user SET `name` = ?, `age` = ? WHERE `userId` = ?";
+        String sql = "UPDATE user SET `name` = ?, `age` = ? WHERE `userId` = ?";
 
-        System.out.println("update: " + JdbcReview.update(connection, sql, new Object[]{user.getName(), user.getAge(), user.getUserId()}));
+        System.out.println("update: " + DataSourceReview.update(connection, sql, new Object[]{user.getName(), user.getAge(), user.getUserId()}));
 
     }
 

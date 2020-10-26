@@ -15,6 +15,7 @@
     <modules>
         <module>basic</module>
         <module>ssm</module>
+        <module>common</module>
     </modules>
 
     <dependencies>

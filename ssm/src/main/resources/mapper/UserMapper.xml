@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.link.mapper.UserMapper">
+
+
+    <sql id="Base_Column_List">
+        `userId`, `name`, `age`, `status`
+    </sql>
+
+
+    <!-- 新增用户 -->
+    <insert id="addUser" parameterType="cn.link.bean.User" >
+        INSERT INTO user
+        <include refid="Base_Column_List"/>
+        VALUES
+            (#{user.userId}, #{user.name}, #{user.age}, #{user.status})
+    </insert>
+
+    <!-- 传入List时，parameterType填集合类或泛型皆可 -->
+    <insert id="addUserBatch" parameterType="cn.link.bean.User" >
+        INSERT INTO user
+        <include refid="Base_Column_List"/>
+        VALUES
+        <foreach collection="users" item="user" separator=",">
+            (#{user.userId}, #{user.name}, #{user.age}, #{user.status})
+        </foreach>
+    </insert>
+
+    <select id="queryUser" resultType="cn.link.bean.User">
+           SELECT
+           <include refid="Base_Column_List"/>
+           FROM user
+    </select>
+</mapper>

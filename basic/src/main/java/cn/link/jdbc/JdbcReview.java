@@ -1,7 +1,6 @@
 package cn.link.jdbc;
 
 
-import cn.link.jdbc.bean.User;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;
@@ -102,7 +101,7 @@ public class JdbcReview {
                 connection.rollback();
             }
 
-        }finally {
+        } finally {
 
             //6. 关闭资源
             closeResource(preparedStatement, connection, null);
@@ -188,33 +187,20 @@ public class JdbcReview {
     /**
      * 关闭资源
      */
-    public static void closeResource(PreparedStatement preparedStatement, Connection connection, ResultSet resultSet) {
+    public static void closeResource(PreparedStatement preparedStatement, Connection connection, ResultSet resultSet) throws SQLException {
 
         if (preparedStatement != null) {
-            try {
-                preparedStatement.close();
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
+            preparedStatement.close();
         }
 
         if (resultSet != null) {
-            try {
-                resultSet.close();
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
+            resultSet.close();
         }
 
         if (connection != null) {
-            try {
-                connection.close();
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
+            connection.close();
         }
 
     }
-
 
 }

@@ -1,4 +1,4 @@
-package cn.link.jdbc.bean;
+package cn.link.bean;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
