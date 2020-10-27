@@ -4,22 +4,24 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.link.mapper.UserMapper">
 
-
     <sql id="Base_Column_List">
         `userId`, `name`, `age`, `status`
     </sql>
 
+    <resultMap id="user" type="cn.link.bean.User">
+
+    </resultMap>
 
     <!-- 新增用户 -->
-    <insert id="addUser" parameterType="cn.link.bean.User" >
+    <insert id="addUser" parameterType="cn.link.bean.User" useGeneratedKeys="true" keyProperty="userId">
         INSERT INTO user
         <include refid="Base_Column_List"/>
         VALUES
-            (#{user.userId}, #{user.name}, #{user.age}, #{user.status})
+        (#{user.userId}, #{user.name}, #{user.age}, 1)
     </insert>
 
-    <!-- 传入List时，parameterType填集合类或泛型皆可 -->
-    <insert id="addUserBatch" parameterType="cn.link.bean.User" >
+    <!-- 批量新增用户 -->
+    <insert id="addUserBatch" parameterType="cn.link.bean.User">
         INSERT INTO user
         <include refid="Base_Column_List"/>
         VALUES
@@ -28,9 +30,10 @@
         </foreach>
     </insert>
 
+    <!-- 查询用户 -->
     <select id="queryUser" resultType="cn.link.bean.User">
-           SELECT
-           <include refid="Base_Column_List"/>
-           FROM user
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM user
     </select>
 </mapper>

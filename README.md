@@ -33,36 +33,78 @@
 
 5. 获取并解析结果集(ResultSet)
 
-   ResultSet => MetaData => ColumnCount、ColumnName（反射赋值
-
-   
-
-   ）
+   ResultSet => MetaData => ColumnCount、ColumnName（反射赋值）
 
 6. 关闭资源(PreparedStatement, Connection, ResultSet)
 
+   
+
+## SSM
+
+表现层（UI）、业务逻辑层（BLL）、数据访问层（DAL）
+
+整合配置文件思路：
+
+1. 包扫描注入容器： Controller、Service
+
+2.  Bean对象：
+
+   SqlSessionFactoryBean(MapperLocation、ConfigLocation、DataSource)
+
+   DataSource
+
+   InternalResourceViewResolver
 
 
 
+### SpringMVC
+
+**核心**：DispatcherServlet
+
+问题和解决：
+
+1. **不添加如下配置，访问 controller 会报 404**
+
+   ```xml
+   <mvc:default-servlet-handler/>
+   ```
+
+   
+
+2. **添加了也无法返回数据**
+
+   mvc在返回 JSON 格式时默认使用 jackson
+
+   1. 导 Jackson 包
+
+   2. 上方配置中添加其他messageConverter(如FastJson)
+
+   ```xml
+   <mvc:annotation-driven>
+           <mvc:message-converters register-defaults="false">
+               <bean id="fastJsonHttpMessageConverter"
+       class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+                   <property name="supportedMediaTypes">
+                       <list>
+                           <!-- 这里顺序不能反，一定先写 text/html,不然 IE执行AJAX时，返回JSON出现下载文件 -->
+                           <value>text/html;charset=UTF-8</value>
+                           <value>application/json;charset=UTF-8</value>
+                       </list>
+                   </property>
+               </bean>
+           </mvc:message-converters>
+       </mvc:annotation-driven>
+   ```
+
+   
 
 
 
+### Spring
 
+**核心**：AOP（整个框架都基于代理、事务管理...）、IOC（管理对象的容器）、DI
 
+### Mybatis
 
+**核心**：SqlSessionFactoryBean
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-### 

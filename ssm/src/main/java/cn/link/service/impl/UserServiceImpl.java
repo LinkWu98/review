@@ -4,6 +4,7 @@ import cn.link.bean.User;
 import cn.link.mapper.UserMapper;
 import cn.link.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.List;
  * @date 2020/10/26 23:27
  * @description
  */
+@Service
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -26,22 +28,23 @@ public class UserServiceImpl implements UserService {
 
         userList.add(user);
 
-        userMapper.addUser(userList);
+        int result = userMapper.addUser(userList);
 
-        return false;
+        return result != 0;
     }
 
     @Override
-    public int addUserBatch(List<User> users) {
+    public boolean addUserBatch(List<User> users) {
 
-        return userMapper.addUserBatch(users);
+        return userMapper.addUserBatch(users) != 0;
 
     }
 
     @Override
     public List<User> queryUser() {
 
-        return null;
+        return userMapper.queryUser();
 
     }
+
 }

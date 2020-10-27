@@ -42,11 +42,11 @@ public class Response<T> {
      * 成功
      * @return
      */
-    public static Response success() {
+    public static Response succeed() {
         return new Response();
     }
 
-    public static <T> Response<T> success(T data) {
+    public static <T> Response<T> succeed(T data) {
         return new Response<T>(data, true, "响应成功");
     }
 
@@ -80,6 +80,15 @@ public class Response<T> {
         return this;
     }
 
+    @Override
+    public String toString() {
+        return "Response{" +
+                "data=" + data +
+                ", message='" + message + '\'' +
+                ", success=" + success +
+                '}';
+    }
+
     public void setData(T data) {
         this.data = data;
     }
@@ -92,5 +101,15 @@ public class Response<T> {
         this.success = success;
     }
 
+    public T getData() {
+        return data;
+    }
 
+    public String getMessage() {
+        return message;
+    }
+
+    public Boolean getSuccess() {
+        return success;
+    }
 }

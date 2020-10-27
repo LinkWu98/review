@@ -7,11 +7,12 @@
 
 
     <!-- 包扫描,将控制层类注入容器中 -->
-    <context:component-scan base-package="cn.link.controller"/>
+    <context:component-scan base-package="cn.link">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
 
     <!-- 读取配置文件属性，可直接 ${属性名} 用于 value 中 -->
     <context:property-placeholder location="classpath:datasource.properties"/>
-
 
     <!-- 连接池配置 -->
     <bean id="druidDataSource" class="com.alibaba.druid.pool.DruidDataSource">
@@ -28,7 +29,7 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="druidDataSource"/>
         <property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>
-        <property name="mapperLocations" value="mapper/*.xml"/>
+        <property name="mapperLocations" value="classpath:mapper/*.xml"/>
     </bean>
 
     <!-- 配置Mapper接口扫描，将其加载到SpringIOC中 -->

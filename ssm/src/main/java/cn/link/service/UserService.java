@@ -24,7 +24,7 @@ public interface UserService {
      * @param users
      * @return
      */
-    int addUserBatch(List<User> users);
+    boolean addUserBatch(List<User> users);
 
     /**
      * 查询用户
