@@ -3,3 +3,5 @@ target
 # Project exclude paths
 /basic/target
 /ssm/target
+*.iml
+/*.iml
