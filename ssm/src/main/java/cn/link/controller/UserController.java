@@ -3,7 +3,6 @@ package cn.link.controller;
 import cn.link.bean.User;
 import cn.link.common.Response;
 import cn.link.service.UserService;
-import com.alibaba.fastjson.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +22,25 @@ public class UserController {
 
     @Autowired
     UserService userService;
+
+    /**
+     * 跳转登录页
+     * @return
+     */
+    @GetMapping("/toLoginPage")
+    public String toLoginPage() {
+        return "login";
+    }
+
+    /**
+     * 登录
+     * @return
+     */
+    @ResponseBody
+    @GetMapping("/login")
+    public Response doLogin() {
+        return Response.succeed();
+    }
 
     /**
      * 新增用户

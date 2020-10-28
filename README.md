@@ -108,3 +108,12 @@
 
 **核心**：SqlSessionFactoryBean
 
+
+
+## 其他
+
+#### POST请求两种格式
+
+最基本的页面表单提交格式：application/x-www-form-urlencoded
+
+文件上传：multipart/form-data

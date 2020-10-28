@@ -24,11 +24,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean addUser(User user) {
 
-        List<User> userList = new ArrayList<>();
-
-        userList.add(user);
-
-        int result = userMapper.addUser(userList);
+        int result = userMapper.addUser(user);
 
         return result != 0;
     }

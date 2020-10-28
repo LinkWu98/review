@@ -1,6 +1,7 @@
 package cn.link.service;
 
 import cn.link.bean.User;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 

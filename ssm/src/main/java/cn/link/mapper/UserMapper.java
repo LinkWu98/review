@@ -2,6 +2,7 @@ package cn.link.mapper;
 
 import cn.link.bean.User;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -19,14 +20,14 @@ public interface UserMapper {
      * 新增用户
      * @return
      */
-    int addUser(List<User> users);
+    int addUser(@Param("user") User user);
 
     /**
      * 批量新增用户
      * @param users
      * @return
      */
-    int addUserBatch(List<User> users);
+    int addUserBatch(@Param("users") List<User> users);
 
     /**
      * 查询用户

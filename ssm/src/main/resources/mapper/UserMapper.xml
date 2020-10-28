@@ -15,7 +15,7 @@
     <!-- 新增用户 -->
     <insert id="addUser" parameterType="cn.link.bean.User" useGeneratedKeys="true" keyProperty="userId">
         INSERT INTO user
-        <include refid="Base_Column_List"/>
+        ( <include refid="Base_Column_List"/> )
         VALUES
         (#{user.userId}, #{user.name}, #{user.age}, 1)
     </insert>
@@ -23,10 +23,10 @@
     <!-- 批量新增用户 -->
     <insert id="addUserBatch" parameterType="cn.link.bean.User">
         INSERT INTO user
-        <include refid="Base_Column_List"/>
+        ( <include refid="Base_Column_List"/> )
         VALUES
         <foreach collection="users" item="user" separator=",">
-            (#{user.userId}, #{user.name}, #{user.age}, #{user.status})
+            (#{user.userId}, #{user.name}, #{user.age}, 1)
         </foreach>
     </insert>
 
