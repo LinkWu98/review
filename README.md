@@ -110,6 +110,34 @@
 
 
 
+## Tomcat
+
+war 与 war_exploded
+
+war：打包后部署到 Tomcat文件夹
+
+ war_exploded：打包后部署到idea的target中
+
+
+
+## 日志
+
+为什么需要门面接口？
+
+​	没有一套抽象规范，更换日志接口会导致项目中的日志相关代码也要修改，非常繁杂，使用日志接口后，日志输出都有一套规范，切换日志实现类对代码层面没有影响。
+
+
+
+日志门面接口api：commons-logging(JCL - SpringBoot默认)、slf4j
+
+日志实现：log4j、Log4j2、logback(SpringBoot默认)
+
+
+
+## 
+
+
+
 ## 其他
 
 #### POST请求两种格式

@@ -1,4 +1,4 @@
-package cn.link.controller;
+package cn.link.controller.user;
 
 import cn.link.bean.User;
 import cn.link.common.Response;

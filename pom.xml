@@ -63,9 +63,9 @@
 
         <!-- javax.servlet.ServletContext报错 缺少该依赖 -->
         <dependency>
-          <groupId>javax.servlet</groupId>
-          <artifactId>servlet-api</artifactId>
-          <version>2.5</version>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.5</version>
         </dependency>
 
         <!-- jsp 相关依赖 -->
@@ -81,10 +81,31 @@
             <version>2.2</version>
         </dependency>
 
-         <dependency>
+        <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
             <version>7.0</version>
+        </dependency>
+
+        <!-- 日志相关依赖 -->
+        <!-- slf4j 日志API -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.25</version>
+        </dependency>
+
+        <!-- 日志底层实现 -->
+        <!-- 此处选择 logback -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.3</version>
+            <!--
+            只能在src下的test文件夹下面才可以使用，你如果在a项目中引入了这个依赖，
+            在b项目引入了a项目作为依赖，在b项目中这个@Test注解不会生效，因为scope为test时无法传递依赖
+            -->
+            <!--<scope>test</scope>-->
         </dependency>
     </dependencies>
 
